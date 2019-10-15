@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# -ne 2 ]; then
-  echo "Usage: sh $0 [iphoneos|iphonesimulator] [arm64|armv7s|armv7|x86_64|i386]" 1>&2
+  echo "Usage: sh $0 [macosx|iphoneos|iphonesimulator] [arm64|armv7s|armv7|x86_64|i386]" 1>&2
   exit 1
 fi
 
@@ -23,6 +23,7 @@ TARGETDIR="$CURRENTPATH/.build/$SDK/$ARCH"
 mkdir -p "$TARGETDIR"
 
 ./Configure iphoneos-cross no-shared no-dso no-hw no-engine no-ssl2 no-ssl3 no-comp no-idea no-asm no-dtls no-dtls1 no-threads no-err no-npn no-psk no-srp no-ec2m no-weak-ssl-ciphers -fembed-bitcode -miphoneos-version-min=8.0
+./Configure darwin64-x86_64-cc no-shared no-dso no-hw no-engine no-ssl2 no-ssl3 no-comp no-idea no-asm no-dtls no-dtls1 no-threads no-err no-npn no-psk no-srp no-ec2m no-weak-ssl-ciphers -fembed-bitcode -mmacosx-version-min=10.9 
 
 make clean
 make depend
